@@ -1,0 +1,203 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated to purple gradient theme for TaskWise */
+  --background: oklch(1 0 0); /* White background */
+  --foreground: oklch(0.3 0.1 264); /* Purple-tinted dark text */
+  --card: oklch(0.98 0.005 264); /* Very light purple card background */
+  --card-foreground: oklch(0.3 0.08 264); /* Purple-tinted card text */
+  --popover: oklch(1 0 0); /* White popover */
+  --popover-foreground: oklch(0.3 0.1 264); /* Purple-tinted popover text */
+  --primary: oklch(0.6 0.15 264); /* Main purple #6366f1 */
+  --primary-foreground: oklch(1 0 0); /* White text on primary */
+  --secondary: oklch(0.65 0.12 285); /* Secondary purple #8b5cf6 */
+  --secondary-foreground: oklch(1 0 0); /* White text on secondary */
+  --muted: oklch(0.96 0.01 264); /* Muted purple background */
+  --muted-foreground: oklch(0.5 0.05 264); /* Muted purple text */
+  --accent: oklch(0.65 0.2 330); /* Pink accent #ec4899 */
+  --accent-foreground: oklch(1 0 0); /* White text on accent */
+  --destructive: oklch(0.577 0.245 27.325); /* Red for destructive actions */
+  --destructive-foreground: oklch(1 0 0); /* White text on destructive */
+  --border: oklch(0.92 0.01 264); /* Light purple border */
+  --input: oklch(0.96 0.01 264); /* Light purple input background */
+  --ring: oklch(0.6 0.15 264 / 0.5); /* Purple focus ring */
+  --chart-1: oklch(0.6 0.15 264); /* Chart color 1 - main purple */
+  --chart-2: oklch(0.65 0.12 285); /* Chart color 2 - secondary purple */
+  --chart-3: oklch(0.65 0.2 330); /* Chart color 3 - pink accent */
+  --chart-4: oklch(0.7 0.1 240); /* Chart color 4 - light blue */
+  --chart-5: oklch(0.55 0.08 300); /* Chart color 5 - deep purple */
+  --radius: 1.25rem; /* 20px rounded corners as specified */
+  --sidebar: oklch(1 0 0); /* White sidebar */
+  --sidebar-foreground: oklch(0.3 0.08 264); /* Purple-tinted sidebar text */
+  --sidebar-primary: oklch(0.6 0.15 264); /* Purple sidebar primary */
+  --sidebar-primary-foreground: oklch(1 0 0); /* White text on sidebar primary */
+  --sidebar-accent: oklch(0.65 0.2 330); /* Pink sidebar accent */
+  --sidebar-accent-foreground: oklch(1 0 0); /* White text on sidebar accent */
+  --sidebar-border: oklch(0.92 0.01 264); /* Light purple sidebar border */
+  --sidebar-ring: oklch(0.6 0.15 264 / 0.5); /* Purple sidebar focus ring */
+}
+
+.dark {
+  /* Dark mode with purple theme */
+  --background: oklch(0.1 0.02 264); /* Very dark purple background */
+  --foreground: oklch(0.95 0.01 264); /* Light purple-tinted text */
+  --card: oklch(0.15 0.03 264); /* Dark purple card background */
+  --card-foreground: oklch(0.95 0.01 264); /* Light card text */
+  --popover: oklch(0.15 0.03 264); /* Dark purple popover */
+  --popover-foreground: oklch(0.95 0.01 264); /* Light popover text */
+  --primary: oklch(0.7 0.15 264); /* Brighter purple for dark mode */
+  --primary-foreground: oklch(0.1 0.02 264); /* Dark text on primary */
+  --secondary: oklch(0.25 0.05 285); /* Dark secondary purple */
+  --secondary-foreground: oklch(0.95 0.01 264); /* Light text on secondary */
+  --muted: oklch(0.2 0.03 264); /* Dark muted purple */
+  --muted-foreground: oklch(0.7 0.03 264); /* Muted light text */
+  --accent: oklch(0.25 0.05 330); /* Dark pink accent */
+  --accent-foreground: oklch(0.95 0.01 264); /* Light text on accent */
+  --destructive: oklch(0.396 0.141 25.723); /* Dark red */
+  --destructive-foreground: oklch(0.95 0.01 264); /* Light text on destructive */
+  --border: oklch(0.25 0.03 264); /* Dark purple border */
+  --input: oklch(0.25 0.03 264); /* Dark purple input */
+  --ring: oklch(0.7 0.15 264 / 0.5); /* Bright purple focus ring */
+  --chart-1: oklch(0.7 0.15 264); /* Bright chart colors for dark mode */
+  --chart-2: oklch(0.75 0.12 285);
+  --chart-3: oklch(0.75 0.2 330);
+  --chart-4: oklch(0.8 0.1 240);
+  --chart-5: oklch(0.65 0.08 300);
+  --sidebar: oklch(0.12 0.02 264); /* Dark purple sidebar */
+  --sidebar-foreground: oklch(0.95 0.01 264); /* Light sidebar text */
+  --sidebar-primary: oklch(0.7 0.15 264); /* Bright purple sidebar primary */
+  --sidebar-primary-foreground: oklch(0.1 0.02 264); /* Dark text on sidebar primary */
+  --sidebar-accent: oklch(0.75 0.2 330); /* Bright pink sidebar accent */
+  --sidebar-accent-foreground: oklch(0.1 0.02 264); /* Dark text on sidebar accent */
+  --sidebar-border: oklch(0.25 0.03 264); /* Dark purple sidebar border */
+  --sidebar-ring: oklch(0.7 0.15 264 / 0.5); /* Bright purple sidebar focus ring */
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+  
+  html {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Prevent zoom on focus in iOS */
+  input, select, textarea {
+    font-size: 16px;
+  }
+  
+  @media (max-width: 640px) {
+    /* Smaller touch targets on mobile */
+    button, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better spacing for small screens */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
+
+@layer components {
+  /* Blob animation for floating orbs */
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+  
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  .animation-delay-6000 {
+    animation-delay: 6s;
+  }
+  
+  .animation-delay-8000 {
+    animation-delay: 8s;
+  }
+  
+  .animation-delay-10000 {
+    animation-delay: 10s;
+  }
+  
+  .animation-delay-12000 {
+    animation-delay: 12s;
+  }
+  
+  .animation-delay-14000 {
+    animation-delay: 14s;
+  }
+}
