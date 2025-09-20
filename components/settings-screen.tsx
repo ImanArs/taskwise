@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch"
 import { Slider } from "@/components/ui/slider"
 import { Separator } from "@/components/ui/separator"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Clock, Brain, Palette, Calendar, Bell, Shield, Download, Upload, Trash2, Plus, Edit, Save, ChevronRight } from "lucide-react"
 import { useSettingsStore } from "@/lib/settings-store"
 import { toast } from "@/hooks/use-toast"
@@ -33,6 +34,31 @@ export function SettingsScreen() {
 
   const [newCategory, setNewCategory] = useState({ name: "", color: "#6366f1", icon: "📝" })
   const [showAddCategory, setShowAddCategory] = useState(false)
+  const [dialogState, setDialogState] = useState<{
+    isOpen: boolean
+    title: string
+    url: string
+  }>({
+    isOpen: false,
+    title: "",
+    url: ""
+  })
+
+  const openDialog = (title: string, url: string) => {
+    setDialogState({
+      isOpen: true,
+      title,
+      url
+    })
+  }
+
+  const closeDialog = () => {
+    setDialogState({
+      isOpen: false,
+      title: "",
+      url: ""
+    })
+  }
 
   const handleSaveSchedule = () => {
     toast({
@@ -143,20 +169,25 @@ export function SettingsScreen() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4 sm:space-y-6">
-          <Card className="py-3 px-5 flex items-center flex-row justify-between">
+          <Card
+            className="py-3 px-5 flex items-center flex-row justify-between cursor-pointer hover:bg-muted/50 transition-colors"
+            onClick={() => openDialog("Privacy Policy", "https://www.privacypolicies.com/live/21a38b38-130e-4053-a080-0d1e7d332cc5")}
+          >
             <p>Privacy policy</p>
             <ChevronRight />
           </Card>
-          <Card className="py-3 px-5 flex items-center flex-row justify-between">
+          <Card
+            className="py-3 px-5 flex items-center flex-row justify-between cursor-pointer hover:bg-muted/50 transition-colors"
+            onClick={() => openDialog("Terms of Use", "https://www.privacypolicies.com/live/cacde4cb-6398-42f6-90e1-434bbd6d5d40")}
+          >
             Terms of use
             <ChevronRight />
           </Card>
-          <Card className="py-3 px-5 flex items-center flex-row justify-between">
+          <Card
+            className="py-3 px-5 flex items-center flex-row justify-between cursor-pointer hover:bg-muted/50 transition-colors"
+            onClick={() => openDialog("Support", "https://form.jotform.com/252623850799368")}
+          >
             Support
-            <ChevronRight />
-          </Card>
-          <Card className="py-3 px-5 flex items-center flex-row justify-between">
-            Share
             <ChevronRight />
           </Card>
         </CardContent>
@@ -336,6 +367,22 @@ export function SettingsScreen() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Dialog for Privacy Policy, Terms, and Support */}
+      <Dialog open={dialogState.isOpen} onOpenChange={closeDialog}>
+        <DialogContent className="max-w-4xl w-[calc(100%-24px)] mx-auto max-h-[80vh] px-2">
+          <DialogHeader>
+            <DialogTitle>{dialogState.title}</DialogTitle>
+          </DialogHeader>
+          <div className="flex-1 min-h-[500px]">
+            <iframe
+              src={dialogState.url}
+              className="w-full h-full border-0 rounded-md"
+              title={dialogState.title}
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
